@@ -13,6 +13,9 @@
 		002DF3511A0833D000DDB371 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 002DF3501A0833D000DDB371 /* Images.xcassets */; };
 		002DF3541A0833D000DDB371 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002DF3521A0833D000DDB371 /* LaunchScreen.xib */; };
 		002DF3601A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF35F1A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.swift */; };
+		002DF3721A08340C00DDB371 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3711A08340C00DDB371 /* KeyboardViewController.swift */; };
+		002DF3751A08340C00DDB371 /* WKPredictiveKeyboardExample.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 002DF36D1A08340C00DDB371 /* WKPredictiveKeyboardExample.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		002DF37B1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,7 +26,28 @@
 			remoteGlobalIDString = 002DF3431A0833D000DDB371;
 			remoteInfo = WKPredictiveKeyboardSample;
 		};
+		002DF3731A08340C00DDB371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002DF33C1A0833D000DDB371 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 002DF36C1A08340C00DDB371;
+			remoteInfo = WKPredictiveKeyboardExample;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		002DF3791A08340C00DDB371 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				002DF3751A08340C00DDB371 /* WKPredictiveKeyboardExample.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		002DF3441A0833D000DDB371 /* WKPredictiveKeyboardSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKPredictiveKeyboardSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +60,10 @@
 		002DF3591A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WKPredictiveKeyboardSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		002DF35E1A0833D000DDB371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		002DF35F1A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKPredictiveKeyboardSampleTests.swift; sourceTree = "<group>"; };
+		002DF36D1A08340C00DDB371 /* WKPredictiveKeyboardExample.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WKPredictiveKeyboardExample.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		002DF3701A08340C00DDB371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		002DF3711A08340C00DDB371 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKPredictiveKeyboardAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +81,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		002DF36A1A08340C00DDB371 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +96,7 @@
 			children = (
 				002DF3461A0833D000DDB371 /* WKPredictiveKeyboardSample */,
 				002DF35C1A0833D000DDB371 /* WKPredictiveKeyboardSampleTests */,
+				002DF36E1A08340C00DDB371 /* WKPredictiveKeyboardExample */,
 				002DF3451A0833D000DDB371 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +106,7 @@
 			children = (
 				002DF3441A0833D000DDB371 /* WKPredictiveKeyboardSample.app */,
 				002DF3591A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.xctest */,
+				002DF36D1A08340C00DDB371 /* WKPredictiveKeyboardExample.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +149,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		002DF36E1A08340C00DDB371 /* WKPredictiveKeyboardExample */ = {
+			isa = PBXGroup;
+			children = (
+				002DF3711A08340C00DDB371 /* KeyboardViewController.swift */,
+				002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */,
+				002DF36F1A08340C00DDB371 /* Supporting Files */,
+			);
+			path = WKPredictiveKeyboardExample;
+			sourceTree = "<group>";
+		};
+		002DF36F1A08340C00DDB371 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				002DF3701A08340C00DDB371 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,10 +177,12 @@
 				002DF3401A0833D000DDB371 /* Sources */,
 				002DF3411A0833D000DDB371 /* Frameworks */,
 				002DF3421A0833D000DDB371 /* Resources */,
+				002DF3791A08340C00DDB371 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				002DF3741A08340C00DDB371 /* PBXTargetDependency */,
 			);
 			name = WKPredictiveKeyboardSample;
 			productName = WKPredictiveKeyboardSample;
@@ -150,6 +207,23 @@
 			productReference = 002DF3591A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		002DF36C1A08340C00DDB371 /* WKPredictiveKeyboardExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 002DF3761A08340C00DDB371 /* Build configuration list for PBXNativeTarget "WKPredictiveKeyboardExample" */;
+			buildPhases = (
+				002DF3691A08340C00DDB371 /* Sources */,
+				002DF36A1A08340C00DDB371 /* Frameworks */,
+				002DF36B1A08340C00DDB371 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WKPredictiveKeyboardExample;
+			productName = WKPredictiveKeyboardExample;
+			productReference = 002DF36D1A08340C00DDB371 /* WKPredictiveKeyboardExample.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -165,6 +239,9 @@
 					002DF3581A0833D000DDB371 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 002DF3431A0833D000DDB371;
+					};
+					002DF36C1A08340C00DDB371 = {
+						CreatedOnToolsVersion = 6.1;
 					};
 				};
 			};
@@ -183,6 +260,7 @@
 			targets = (
 				002DF3431A0833D000DDB371 /* WKPredictiveKeyboardSample */,
 				002DF3581A0833D000DDB371 /* WKPredictiveKeyboardSampleTests */,
+				002DF36C1A08340C00DDB371 /* WKPredictiveKeyboardExample */,
 			);
 		};
 /* End PBXProject section */
@@ -199,6 +277,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		002DF3571A0833D000DDB371 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		002DF36B1A08340C00DDB371 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,6 +310,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		002DF3691A08340C00DDB371 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				002DF37B1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift in Sources */,
+				002DF3721A08340C00DDB371 /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -232,6 +326,11 @@
 			isa = PBXTargetDependency;
 			target = 002DF3431A0833D000DDB371 /* WKPredictiveKeyboardSample */;
 			targetProxy = 002DF35A1A0833D000DDB371 /* PBXContainerItemProxy */;
+		};
+		002DF3741A08340C00DDB371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 002DF36C1A08340C00DDB371 /* WKPredictiveKeyboardExample */;
+			targetProxy = 002DF3731A08340C00DDB371 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -336,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WKPredictiveKeyboardSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -346,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WKPredictiveKeyboardSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -386,6 +487,30 @@
 			};
 			name = Release;
 		};
+		002DF3771A08340C00DDB371 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WKPredictiveKeyboardExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		002DF3781A08340C00DDB371 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = WKPredictiveKeyboardExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +536,14 @@
 			buildConfigurations = (
 				002DF3671A0833D000DDB371 /* Debug */,
 				002DF3681A0833D000DDB371 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		002DF3761A08340C00DDB371 /* Build configuration list for PBXNativeTarget "WKPredictiveKeyboardExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				002DF3771A08340C00DDB371 /* Debug */,
+				002DF3781A08340C00DDB371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
