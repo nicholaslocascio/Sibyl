@@ -7,15 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0000BF981A0EC2400006A632 /* WKPredictiveKeyboardExample.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 002DF36D1A08340C00DDB371 /* WKPredictiveKeyboardExample.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0000BF9A1A0EECE20006A632 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000BF991A0EECE20006A632 /* Prediction.swift */; };
 		002DF34A1A0833D000DDB371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3491A0833D000DDB371 /* AppDelegate.swift */; };
 		002DF34C1A0833D000DDB371 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF34B1A0833D000DDB371 /* ViewController.swift */; };
 		002DF34F1A0833D000DDB371 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 002DF34D1A0833D000DDB371 /* Main.storyboard */; };
 		002DF3511A0833D000DDB371 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 002DF3501A0833D000DDB371 /* Images.xcassets */; };
 		002DF3541A0833D000DDB371 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 002DF3521A0833D000DDB371 /* LaunchScreen.xib */; };
 		002DF3601A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF35F1A0833D000DDB371 /* WKPredictiveKeyboardSampleTests.swift */; };
-		002DF3721A08340C00DDB371 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3711A08340C00DDB371 /* KeyboardViewController.swift */; };
-		002DF3751A08340C00DDB371 /* WKPredictiveKeyboardExample.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 002DF36D1A08340C00DDB371 /* WKPredictiveKeyboardExample.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		002DF37B1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */; };
+		002DF3811A083C3F00DDB371 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 002DF3801A083C3F00DDB371 /* libsqlite3.0.dylib */; };
+		0071FEE51A0B5802007DD34C /* libsqlite3.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 002DF3801A083C3F00DDB371 /* libsqlite3.0.dylib */; };
+		0071FEE61A0B5E2B007DD34C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3491A0833D000DDB371 /* AppDelegate.swift */; };
+		0071FEE71A0B5E2B007DD34C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF34B1A0833D000DDB371 /* ViewController.swift */; };
+		0071FEE91A0B5E2B007DD34C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3711A08340C00DDB371 /* KeyboardViewController.swift */; };
+		0071FEEA1A0B5E2B007DD34C /* WKPredictiveKeyboardAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */; };
+		0071FEEB1A0B5E2B007DD34C /* NGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3821A083C8300DDB371 /* NGram.swift */; };
+		0071FEEC1A0B5E2B007DD34C /* OneGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3841A086F8400DDB371 /* OneGram.swift */; };
+		0071FEED1A0B5E2B007DD34C /* TwoGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3861A08709A00DDB371 /* TwoGram.swift */; };
+		0071FEEE1A0B5E2B007DD34C /* ThreeGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DF3881A0870C200DDB371 /* ThreeGram.swift */; };
+		00805B171A0EB708001CBA00 /* File.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00805B161A0EB708001CBA00 /* File.strings */; };
+		00805B191A0EB740001CBA00 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00805B181A0EB740001CBA00 /* Settings.bundle */; };
+		00805B1D1A0EB780001CBA00 /* Sr.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00805B1C1A0EB780001CBA00 /* Sr.strings */; };
+		00805B211A0EBE05001CBA00 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00805B181A0EB740001CBA00 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +46,34 @@
 			remoteGlobalIDString = 002DF36C1A08340C00DDB371;
 			remoteInfo = WKPredictiveKeyboardExample;
 		};
+		003D067C1A700EC700481A2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003D06751A700EC600481A2B /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC3773F319C8CBB3004FCF85;
+			remoteInfo = "SQLite iOS";
+		};
+		003D067E1A700EC700481A2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003D06751A700EC600481A2B /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC3773FE19C8CBB3004FCF85;
+			remoteInfo = "SQLite iOS Tests";
+		};
+		003D06801A700EC700481A2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003D06751A700EC600481A2B /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC37741419C8CC2F004FCF85;
+			remoteInfo = "SQLite Mac";
+		};
+		003D06821A700EC700481A2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 003D06751A700EC600481A2B /* SQLite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC37741E19C8CC2F004FCF85;
+			remoteInfo = "SQLite Mac Tests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,7 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				002DF3751A08340C00DDB371 /* WKPredictiveKeyboardExample.appex in Embed App Extensions */,
+				0000BF981A0EC2400006A632 /* WKPredictiveKeyboardExample.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +91,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0000BF991A0EECE20006A632 /* Prediction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		002DF3441A0833D000DDB371 /* WKPredictiveKeyboardSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKPredictiveKeyboardSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		002DF3481A0833D000DDB371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		002DF3491A0833D000DDB371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +106,15 @@
 		002DF3701A08340C00DDB371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		002DF3711A08340C00DDB371 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKPredictiveKeyboardAPI.swift; sourceTree = "<group>"; };
+		002DF3801A083C3F00DDB371 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		002DF3821A083C8300DDB371 /* NGram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGram.swift; sourceTree = "<group>"; };
+		002DF3841A086F8400DDB371 /* OneGram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneGram.swift; sourceTree = "<group>"; };
+		002DF3861A08709A00DDB371 /* TwoGram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoGram.swift; sourceTree = "<group>"; };
+		002DF3881A0870C200DDB371 /* ThreeGram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeGram.swift; sourceTree = "<group>"; };
+		003D06751A700EC600481A2B /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../../Desktop/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		00805B161A0EB708001CBA00 /* File.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = File.strings; sourceTree = "<group>"; };
+		00805B181A0EB740001CBA00 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../WKPredictiveKeyboardExample/Settings.bundle; sourceTree = "<group>"; };
+		00805B1C1A0EB780001CBA00 /* Sr.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Sr.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002DF3811A083C3F00DDB371 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +146,9 @@
 		002DF33B1A0833D000DDB371 = {
 			isa = PBXGroup;
 			children = (
+				003D06751A700EC600481A2B /* SQLite.xcodeproj */,
+				00805B1C1A0EB780001CBA00 /* Sr.strings */,
+				002DF3801A083C3F00DDB371 /* libsqlite3.0.dylib */,
 				002DF3461A0833D000DDB371 /* WKPredictiveKeyboardSample */,
 				002DF35C1A0833D000DDB371 /* WKPredictiveKeyboardSampleTests */,
 				002DF36E1A08340C00DDB371 /* WKPredictiveKeyboardExample */,
@@ -117,6 +172,7 @@
 				002DF3491A0833D000DDB371 /* AppDelegate.swift */,
 				002DF34B1A0833D000DDB371 /* ViewController.swift */,
 				002DF34D1A0833D000DDB371 /* Main.storyboard */,
+				00805B181A0EB740001CBA00 /* Settings.bundle */,
 				002DF3501A0833D000DDB371 /* Images.xcassets */,
 				002DF3521A0833D000DDB371 /* LaunchScreen.xib */,
 				002DF3471A0833D000DDB371 /* Supporting Files */,
@@ -153,7 +209,13 @@
 			isa = PBXGroup;
 			children = (
 				002DF3711A08340C00DDB371 /* KeyboardViewController.swift */,
+				00805B161A0EB708001CBA00 /* File.strings */,
 				002DF37A1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift */,
+				002DF3821A083C8300DDB371 /* NGram.swift */,
+				0000BF991A0EECE20006A632 /* Prediction.swift */,
+				002DF3841A086F8400DDB371 /* OneGram.swift */,
+				002DF3861A08709A00DDB371 /* TwoGram.swift */,
+				002DF3881A0870C200DDB371 /* ThreeGram.swift */,
 				002DF36F1A08340C00DDB371 /* Supporting Files */,
 			);
 			path = WKPredictiveKeyboardExample;
@@ -165,6 +227,17 @@
 				002DF3701A08340C00DDB371 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		003D06761A700EC600481A2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				003D067D1A700EC700481A2B /* SQLite.framework */,
+				003D067F1A700EC700481A2B /* SQLite iOS Tests.xctest */,
+				003D06811A700EC700481A2B /* SQLite.framework */,
+				003D06831A700EC700481A2B /* SQLite Mac Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +329,12 @@
 			mainGroup = 002DF33B1A0833D000DDB371;
 			productRefGroup = 002DF3451A0833D000DDB371 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 003D06761A700EC600481A2B /* Products */;
+					ProjectRef = 003D06751A700EC600481A2B /* SQLite.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				002DF3431A0833D000DDB371 /* WKPredictiveKeyboardSample */,
@@ -265,11 +344,43 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		003D067D1A700EC700481A2B /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 003D067C1A700EC700481A2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		003D067F1A700EC700481A2B /* SQLite iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLite iOS Tests.xctest";
+			remoteRef = 003D067E1A700EC700481A2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		003D06811A700EC700481A2B /* SQLite.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SQLite.framework;
+			remoteRef = 003D06801A700EC700481A2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		003D06831A700EC700481A2B /* SQLite Mac Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SQLite Mac Tests.xctest";
+			remoteRef = 003D06821A700EC700481A2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		002DF3421A0833D000DDB371 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00805B211A0EBE05001CBA00 /* Settings.bundle in Resources */,
 				002DF34F1A0833D000DDB371 /* Main.storyboard in Resources */,
 				002DF3541A0833D000DDB371 /* LaunchScreen.xib in Resources */,
 				002DF3511A0833D000DDB371 /* Images.xcassets in Resources */,
@@ -287,6 +398,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00805B191A0EB740001CBA00 /* Settings.bundle in Resources */,
+				0071FEE51A0B5802007DD34C /* libsqlite3.0.dylib in Resources */,
+				00805B171A0EB708001CBA00 /* File.strings in Resources */,
+				00805B1D1A0EB780001CBA00 /* Sr.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,8 +429,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002DF37B1A08359C00DDB371 /* WKPredictiveKeyboardAPI.swift in Sources */,
-				002DF3721A08340C00DDB371 /* KeyboardViewController.swift in Sources */,
+				0071FEE61A0B5E2B007DD34C /* AppDelegate.swift in Sources */,
+				0071FEE71A0B5E2B007DD34C /* ViewController.swift in Sources */,
+				0000BF9A1A0EECE20006A632 /* Prediction.swift in Sources */,
+				0071FEE91A0B5E2B007DD34C /* KeyboardViewController.swift in Sources */,
+				0071FEEA1A0B5E2B007DD34C /* WKPredictiveKeyboardAPI.swift in Sources */,
+				0071FEEB1A0B5E2B007DD34C /* NGram.swift in Sources */,
+				0071FEEC1A0B5E2B007DD34C /* OneGram.swift in Sources */,
+				0071FEED1A0B5E2B007DD34C /* TwoGram.swift in Sources */,
+				0071FEEE1A0B5E2B007DD34C /* ThreeGram.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +652,7 @@
 				002DF3651A0833D000DDB371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		002DF3661A0833D000DDB371 /* Build configuration list for PBXNativeTarget "WKPredictiveKeyboardSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +661,7 @@
 				002DF3681A0833D000DDB371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		002DF3761A08340C00DDB371 /* Build configuration list for PBXNativeTarget "WKPredictiveKeyboardExample" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +670,7 @@
 				002DF3781A08340C00DDB371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

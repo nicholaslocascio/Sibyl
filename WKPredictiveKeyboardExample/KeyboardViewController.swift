@@ -11,6 +11,8 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
     
     @IBOutlet var nextKeyboardButton: UIButton!
+    var recommendationButtons: Array<UIButton>!
+    var predictiveApi : WKPredictiveKeyboardAPI!
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -19,12 +21,8 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        var expandedHeight = 400
-        //
-        //        let heightConstraint = NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 800)
-        //
-        //        self.view.addConstraint(heightConstraint);
-        
+        predictiveApi = WKPredictiveKeyboardAPI()
+        predictiveApi.relearnCorpus()
         
         let buttonTitles1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
         let buttonTitles2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
@@ -35,6 +33,7 @@ class KeyboardViewController: UIInputViewController {
         var row2 = createRowOfButtons(buttonTitles2)
         var row3 = createRowOfButtons(buttonTitles3)
         var row4 = createRowOfButtons(buttonTitles4)
+        
         var suggestionsView = createRowOfSuggestions();
         
         self.view.addSubview(row1)
@@ -71,12 +70,14 @@ class KeyboardViewController: UIInputViewController {
     
     func createRowOfSuggestions() -> UIView {
         
+        recommendationButtons = Array<UIButton>()
         var buttons = [UIButton]()
         var suggestionRowView = UIView(frame: CGRectMake(0, 0, 320, 50))
         
         for suggestionIndex in 0..<3{
             let button = createSuggestionButton()
             buttons.append(button)
+            recommendationButtons.append(button)
             suggestionRowView.addSubview(button)
         }
         
@@ -121,7 +122,20 @@ class KeyboardViewController: UIInputViewController {
         }
     }
     
-    
+    func updatePredictionButtons() {
+        var proxy = self.textDocumentProxy as UITextDocumentProxy
+        var precedingContext = proxy.documentContextBeforeInput ?? ""
+        var suggestions = predictiveApi.recommendationsBasedOnText(precedingContext)
+        
+        var i = 0
+        var maxIndex = min(countElements(suggestions), countElements(recommendationButtons))
+        for i in 0..<maxIndex {
+            var recommendationButton = recommendationButtons[i]
+            var suggestion = suggestions[i]
+            recommendationButton.setTitle(suggestion, forState: .Normal)
+            println(suggestion)
+        }
+    }
     
     func createButtonWithTitle(title: String) -> UIButton {
         
@@ -142,7 +156,7 @@ class KeyboardViewController: UIInputViewController {
     func didTapSuggestionButton(sender: AnyObject?) {
         let button = sender as UIButton
         var proxy = textDocumentProxy as UITextDocumentProxy
-        let precedingContext = proxy.documentContextBeforeInput
+        var precedingContext =  proxy.documentContextBeforeInput ?? ""
         var charactersToDelete = charactersToDeleteBeforeInserting(precedingContext)
         while charactersToDelete > 0 {
             proxy.deleteBackward()
@@ -152,12 +166,17 @@ class KeyboardViewController: UIInputViewController {
             title += " "
             proxy.insertText(title)
         }
+        updatePredictionButtons()
     }
     
-    func charactersToDeleteBeforeInserting(text: NSString)->Int {
+    func charactersToDeleteBeforeInserting(text: NSString) -> Int {
         var charSet = NSCharacterSet.whitespaceCharacterSet()
         let range = text.rangeOfCharacterFromSet(charSet, options: NSStringCompareOptions.BackwardsSearch)
-        var num = text.length - (range.location + 1)
+        var location = 0
+        if range.location != Int(NSNotFound) {
+            location = range.location + 1
+        }
+        var num = text.length - location
         return num
     }
     
@@ -180,6 +199,7 @@ class KeyboardViewController: UIInputViewController {
                 proxy.insertText(title)
             }
         }
+        updatePredictionButtons()
     }
     
     func addIndividualButtonConstraints(buttons: [UIButton], mainView: UIView){
@@ -196,7 +216,7 @@ class KeyboardViewController: UIInputViewController {
                 
                 rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: mainView, attribute: .Right, multiplier: 1.0, constant: -1)
                 
-            }else{
+            } else{
                 
                 let nextButton = buttons[index+1]
                 rightConstraint = NSLayoutConstraint(item: button, attribute: .Right, relatedBy: .Equal, toItem: nextButton, attribute: .Left, multiplier: 1.0, constant: -1)
@@ -209,7 +229,7 @@ class KeyboardViewController: UIInputViewController {
                 
                 leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: mainView, attribute: .Left, multiplier: 1.0, constant: 1)
                 
-            }else{
+            } else{
                 
                 let prevtButton = buttons[index-1]
                 leftConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: prevtButton, attribute: .Right, multiplier: 1.0, constant: 1)
@@ -240,7 +260,7 @@ class KeyboardViewController: UIInputViewController {
             if index == 0 {
                 topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: inputView, attribute: .Top, multiplier: 1.0, constant: 0)
                 
-            }else{
+            } else{
                 
                 let prevRow = rowViews[index-1]
                 topConstraint = NSLayoutConstraint(item: rowView, attribute: .Top, relatedBy: .Equal, toItem: prevRow, attribute: .Bottom, multiplier: 1.0, constant: 0)
@@ -258,7 +278,7 @@ class KeyboardViewController: UIInputViewController {
             if index == rowViews.count - 1 {
                 bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: inputView, attribute: .Bottom, multiplier: 1.0, constant: 0)
                 
-            }else{
+            } else{
                 
                 let nextRow = rowViews[index+1]
                 bottomConstraint = NSLayoutConstraint(item: rowView, attribute: .Bottom, relatedBy: .Equal, toItem: nextRow, attribute: .Top, multiplier: 1.0, constant: 0)
