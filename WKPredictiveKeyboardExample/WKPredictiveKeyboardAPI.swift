@@ -73,6 +73,11 @@ class WKPredictiveKeyboardAPI {
         db.drop(table: twogram)
         db.drop(table: threegram)
         
+        // What I'd like to do:
+        
+        //  db.drop(table: onegram, ifExists: true)
+        //  db.drop(table: twogram, ifExists: true)
+        //  db.drop(table: twogram, ifExists: true)
 
     }
     
