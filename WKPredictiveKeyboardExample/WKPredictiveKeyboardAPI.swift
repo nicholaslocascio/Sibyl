@@ -20,7 +20,9 @@ class WKPredictiveKeyboardAPI {
 **/
     func relearnCorpus() {
         var text : String = "It was not the dress, but the face and whole figure of Princess Mary that was not pretty, but neither Mademoiselle Bourienne nor the little princess felt this; they still thought that if a blue ribbon were placed in the hair, the hair combed up, and the blue scarf arranged lower on the best maroon dress, and so on, all would be well. They forgot that the frightened face and the figure could not be altered, and that however they might change the setting and adornment of that face, it would still remain piteous and plain. After two or three changes to which Princess Mary meekly submitted, just as her hair had been arranged on the top of her head (a style that quite altered and spoiled her looks) and she had put on a maroon dress with a pale-blue scarf, the little princess walked twice round her, now adjusting a fold of the dress with her little hand, now arranging the scarf and looking at her with her head bent first on one side and then on the other. Perhaps he did not really think this when he met women- even probably he did not, for in general he thought very little--but his looks and manner gave that impression. The princess felt this, and as if wishing to show him that she did not even dare expect to interest him, she turned to his father. The conversation was general and animated, thanks to Princess Lise's voice and little downy lip that lifted over her white teeth. She met Prince Vasili with that playful manner often employed by lively chatty people, and consisting in the assumption that between the person they so address and themselves there are some semi-private, long-established jokes and amusing reminiscences, though no such reminiscences really exist--just as none existed in this case. Prince Vasili readily adopted her tone and the little princess also drew Anatole, whom she hardly knew, into these amusing recollections of things that had never occurred. Mademoiselle Bourienne also shared them and even Princess Mary felt herself pleasantly made to share in these merry reminiscences."
+        
         clearData()
+        initDB()
         
         learnForText(text)
     }
@@ -38,20 +40,19 @@ class WKPredictiveKeyboardAPI {
         let prev = Expression<String>("prev")
         let prevTwo = Expression<String>("prev_two")
         
-        
-        db.create(table: onegram) { t in
+        db.create(table: onegram, ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(text, unique: true)
             t.column(frequency)
         }
         
-        db.create(table: twogram) { t in
+        db.create(table: twogram, ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(text, unique: true)
             t.column(prev)
             t.column(frequency)
         }
-        db.create(table: threegram) { t in
+        db.create(table: threegram, ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(text, unique: true)
             t.column(prev)
@@ -68,16 +69,11 @@ class WKPredictiveKeyboardAPI {
         let twogram = db["twogram"]
         let threegram = db["threegram"]
         
-        
-        db.drop(table: onegram)
-        db.drop(table: twogram)
-        db.drop(table: threegram)
-        
         // What I'd like to do:
         
-        //  db.drop(table: onegram, ifExists: true)
-        //  db.drop(table: twogram, ifExists: true)
-        //  db.drop(table: twogram, ifExists: true)
+        db.drop(table: onegram, ifExists: true)
+        db.drop(table: twogram, ifExists: true)
+        db.drop(table: threegram, ifExists: true)
 
     }
     
@@ -128,9 +124,9 @@ class WKPredictiveKeyboardAPI {
 
         let oneGramPredictionQuery = oneGramTable.order(frequency.desc).limit(3)
         for gram in oneGramPredictionQuery {
-            if var fCount : Int = gram[frequency] {
-                var text : String = gram[text]!
-                var lastWord = text.componentsSeparatedByString(" ").last!
+            if var fCount = gram[frequency] as Int? {
+                var gramText : String = gram[text]
+                var lastWord = gramText.componentsSeparatedByString(" ").last!
                 var score = Float(fCount)*1.0
                 var prediction = Prediction(word: lastWord, score: score)
                 recommendations.append(prediction)
@@ -151,9 +147,9 @@ class WKPredictiveKeyboardAPI {
         
         let oneGramPredictionQuery = twoGramTable.filter(prev == previousWord).order(frequency.desc).limit(3)
         for gram in oneGramPredictionQuery {
-            if var fCount : Int = gram[frequency] {
-                var text : String = gram[text]!
-                var lastWord = text.componentsSeparatedByString(" ").last!
+            if var fCount = gram[frequency] as Int? {
+                var gramText : String = gram[text]
+                var lastWord = gramText.componentsSeparatedByString(" ").last!
                 var score = Float(fCount)*1000.0
                 var prediction = Prediction(word: lastWord, score: score)
                 recommendations.append(prediction)
@@ -256,9 +252,9 @@ class WKPredictiveKeyboardAPI {
         var exists = false
             for existingGram in existingQuery {
                 exists = true
-                if var fCount : Int = existingGram[frequency] {
+                if var fCount = existingGram[frequency] as Int? {
                     fCount = fCount + 1
-                    let updates: Int = existingQuery.update(frequency <- fCount)
+                    let updates: Int = existingQuery.update(frequency <- fCount)!
                 }
         }
         
@@ -280,9 +276,9 @@ class WKPredictiveKeyboardAPI {
         var exists = false
         for existingGram in existingQuery {
             exists = true
-            if var fCount : Int = existingGram[frequency] {
+            if var fCount : Int = existingGram[frequency] as Int? {
                 fCount = fCount + 1
-                let updates: Int = existingQuery.update(frequency <- fCount)
+                let updates: Int = existingQuery.update(frequency <- fCount)!
             }
         }
         
@@ -304,9 +300,9 @@ class WKPredictiveKeyboardAPI {
         var exists = false
         for existingGram in existingQuery {
             exists = true
-            if var fCount : Int = existingGram[frequency] {
+            if var fCount = existingGram[frequency] as Int? {
                 fCount = fCount + 1
-                let updates: Int = existingQuery.update(frequency <- fCount)
+                let updates: Int = existingQuery.update(frequency <- fCount)!
             }
         }
         
