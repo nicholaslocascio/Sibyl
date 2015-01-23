@@ -19,12 +19,18 @@ class WKPredictiveKeyboardAPI {
     Dumps DB and relearns from Corpus.
 **/
     func relearnCorpus() {
-        var text : String = "It was not the dress, but the face and whole figure of Princess Mary that was not pretty, but neither Mademoiselle Bourienne nor the little princess felt this; they still thought that if a blue ribbon were placed in the hair, the hair combed up, and the blue scarf arranged lower on the best maroon dress, and so on, all would be well. They forgot that the frightened face and the figure could not be altered, and that however they might change the setting and adornment of that face, it would still remain piteous and plain. After two or three changes to which Princess Mary meekly submitted, just as her hair had been arranged on the top of her head (a style that quite altered and spoiled her looks) and she had put on a maroon dress with a pale-blue scarf, the little princess walked twice round her, now adjusting a fold of the dress with her little hand, now arranging the scarf and looking at her with her head bent first on one side and then on the other. Perhaps he did not really think this when he met women- even probably he did not, for in general he thought very little--but his looks and manner gave that impression. The princess felt this, and as if wishing to show him that she did not even dare expect to interest him, she turned to his father. The conversation was general and animated, thanks to Princess Lise's voice and little downy lip that lifted over her white teeth. She met Prince Vasili with that playful manner often employed by lively chatty people, and consisting in the assumption that between the person they so address and themselves there are some semi-private, long-established jokes and amusing reminiscences, though no such reminiscences really exist--just as none existed in this case. Prince Vasili readily adopted her tone and the little princess also drew Anatole, whom she hardly knew, into these amusing recollections of things that had never occurred. Mademoiselle Bourienne also shared them and even Princess Mary felt herself pleasantly made to share in these merry reminiscences."
+        var text : String = getText()
         
         clearData()
         initDB()
         
         learnForText(text)
+    }
+    
+    func getText() -> String {
+        let path = NSBundle.mainBundle().pathForResource("CorpusTextSmall", ofType: "txt")
+        var text = String(contentsOfFile: path!, encoding: NSUTF8StringEncoding, error: nil)!
+        return text
     }
     
     func initDB() {
@@ -159,32 +165,42 @@ class WKPredictiveKeyboardAPI {
         return recommendations
     }
     
-    func makeGrams(text: String) -> Array<NGram> {
+    func appendOrIncrement(dict: Dictionary<String, NGram>, gram : NGram) ->Dictionary<String, NGram> {
+        var mutableDict : Dictionary<String, NGram> = dict
+        var key : String = gram.text!
+        if mutableDict.indexForKey(key) != nil {
+            gram.count = gram.count! + 1.0
+            mutableDict.updateValue(gram, forKey: key)
+        } else {
+            mutableDict[key] = gram
+        }
+        
+        return mutableDict
+    }
+    
+    func getGramsAndUpdateCounts(text: String) {
+        print("make grams")
+        var db = getDb()
         var clean = cleanText(text)
         let words = clean.componentsSeparatedByString(" ")
         var numWords = countElements(words)
-        var nGrams = Array<NGram>()
         for i in 0..<numWords {
             var word = words[i]
             var onegram = OneGram(word:word)
-            nGrams.append(onegram)
+            updateCountsWithGram(onegram, db: db)
+            
             if i > 0 {
                 var previousWord = words[i-1]
                 var twogram = TwoGram(previousWord: previousWord, word: word)
-                nGrams.append(twogram)
+                updateCountsWithGram(twogram, db: db)
+
                 if i > 1 {
                     var previousPreviousWord = words[i-2]
                     var threegram = ThreeGram(previousPreviousWord: previousPreviousWord, previousWord: previousWord, word: word)
-                    nGrams.append(threegram)
+                    updateCountsWithGram(threegram, db: db)
                 }
             }
         }
-        
-        for gram in nGrams {
-            println(gram.text!)
-        }
-        
-        return nGrams
     }
     
     /**
@@ -202,8 +218,7 @@ class WKPredictiveKeyboardAPI {
     }
     
     func learnForText(text: String) {
-        var grams : Array<NGram> = makeGrams(text)
-        updateCountsWithGrams(grams)
+        getGramsAndUpdateCounts(text)
     }
     
     func getDb() -> Database {
@@ -213,29 +228,16 @@ class WKPredictiveKeyboardAPI {
         
         let db = Database("\(path)/db.sqlite3")
         
-        println("path" + path)
-        
         return db
     }
     
-    func updateCountsWithGrams(grams: Array<NGram>) {
-        
-        let db = getDb()
-        
-        var getAllQuery = db.prepare("SELECT * from onegram")
-
-        for row : Array in getAllQuery {
-            println("text: \(row[0]), frequency: \(row[1])")
-        }
-        
-        for gram in grams {
-            if gram is OneGram {
-                insertOrUpdateOneGram(db, gram : gram as OneGram)
-            } else if gram is TwoGram {
-                insertOrUpdateTwoGram(db, gram : gram as TwoGram)
-            } else if gram is ThreeGram {
-                insertOrUpdateThreeGram(db, gram : gram as ThreeGram)
-            }
+    func updateCountsWithGram(gram: NGram, db: Database) {
+        if gram is OneGram {
+            insertOrUpdateOneGram(db, gram : gram as OneGram)
+        } else if gram is TwoGram {
+            insertOrUpdateTwoGram(db, gram : gram as TwoGram)
+        } else if gram is ThreeGram {
+            insertOrUpdateThreeGram(db, gram : gram as ThreeGram)
         }
     }
     
@@ -246,7 +248,6 @@ class WKPredictiveKeyboardAPI {
         
         let insertQuery = db.prepare("INSERT INTO onegram (text, frequency) VALUES (?,?)")
         var toUpdate = false
-        
         
         let existingQuery = onegramTable.filter(text == gram.text!).limit(1)
         var exists = false
@@ -289,7 +290,6 @@ class WKPredictiveKeyboardAPI {
     
     func insertOrUpdateThreeGram(db : Database, gram : ThreeGram) {
         let insertQuery = db.prepare("INSERT INTO threegram (text, frequency, prev_two) VALUES (?,?,?)")
-        
 
         let threeGramTable = db["threegram"]
         let frequency = Expression<Int>("frequency")

@@ -16,6 +16,8 @@ class NGram {
     
     init() {
         self.text = ""
+        self.count = 0.0
+        self.score = 0.0
     }
     
     var description : String {
